@@ -30,8 +30,8 @@ class ReplicationTaskProcessor implements TaskProcessor<ReplicationTask> {
     private final String peerId;
 
     private volatile long lastNetworkErrorTime;
-    
-    private static final Pattern READ_TIME_OUT_PATTERN = Pattern.compile(".*read.*time.*out.*"); 
+
+    private static final Pattern READ_TIME_OUT_PATTERN = Pattern.compile(".*read.*time.*out.*");
 
     ReplicationTaskProcessor(String peerId, HttpReplicationClient replicationClient) {
         this.replicationClient = replicationClient;
@@ -59,7 +59,7 @@ class ReplicationTaskProcessor implements TaskProcessor<ReplicationTask> {
         } catch (Throwable e) {
         	if (maybeReadTimeOut(e)) {
                 logger.error("It seems to be a socket read timeout exception, it will retry later. if it continues to happen and some eureka node occupied all the cpu time, you should set property 'eureka.server.peer-node-read-timeout-ms' to a bigger value", e);
-            	//read timeout exception is more Congestion then TransientError, return Congestion for longer delay 
+            	//read timeout exception is more Congestion then TransientError, return Congestion for longer delay
                 return ProcessingResult.Congestion;
             } else if (isNetworkConnectException(e)) {
                 logNetworkErrorSample(task, e);
@@ -89,12 +89,14 @@ class ReplicationTaskProcessor implements TaskProcessor<ReplicationTask> {
                     return ProcessingResult.PermanentError;
                 }
             } else {
+
+                //FIXME 调用成功，执行handleSuccess，否则执行 handleFails
                 handleBatchResponse(tasks, response.getEntity().getResponseList());
             }
         } catch (Throwable e) {
             if (maybeReadTimeOut(e)) {
                 logger.error("It seems to be a socket read timeout exception, it will retry later. if it continues to happen and some eureka node occupied all the cpu time, you should set property 'eureka.server.peer-node-read-timeout-ms' to a bigger value", e);
-            	//read timeout exception is more Congestion then TransientError, return Congestion for longer delay 
+            	//read timeout exception is more Congestion then TransientError, return Congestion for longer delay
                 return ProcessingResult.Congestion;
             } else if (isNetworkConnectException(e)) {
                 logNetworkErrorSample(null, e);
@@ -182,7 +184,7 @@ class ReplicationTaskProcessor implements TaskProcessor<ReplicationTask> {
         } while (e != null);
         return false;
     }
-    
+
     /**
      * Check if the exception is socket read time out exception
      *
@@ -203,8 +205,8 @@ class ReplicationTaskProcessor implements TaskProcessor<ReplicationTask> {
         } while (e != null);
         return false;
     }
-    
-    
+
+
     private static ReplicationInstance createReplicationInstanceOf(InstanceReplicationTask task) {
         ReplicationInstanceBuilder instanceBuilder = aReplicationInstance();
         instanceBuilder.withAppName(task.getAppName());

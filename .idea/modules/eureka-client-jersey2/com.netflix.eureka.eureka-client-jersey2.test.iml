@@ -8,8 +8,8 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="com.netflix.eureka.eureka-client-jersey2.main" />
     <orderEntry type="module" module-name="com.netflix.eureka.eureka-core-jersey2.main" />
+    <orderEntry type="module" module-name="com.netflix.eureka.eureka-client-jersey2.main" />
     <orderEntry type="module" module-name="com.netflix.eureka.eureka-client-jersey2.main" />
     <orderEntry type="module" module-name="com.netflix.eureka.eureka-core.main" />
     <orderEntry type="module" module-name="com.netflix.eureka.eureka-client.main" />
@@ -65,8 +65,8 @@
     <orderEntry type="library" name="Gradle: org.glassfish.hk2:hk2-utils:2.4.0-b34" level="project" />
     <orderEntry type="library" name="Gradle: javax.inject:javax.inject:1" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Gradle: com.google.code.findbugs:jsr305:3.0.1" level="project" />
-    <orderEntry type="library" name="Gradle: aopalliance:aopalliance:1.0" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Gradle: commons-configuration:commons-configuration:1.8" level="project" />
+    <orderEntry type="library" name="Gradle: aopalliance:aopalliance:1.0" level="project" />
     <orderEntry type="library" name="Gradle: com.github.andrewoma.dexx:dexx-collections:0.2" level="project" />
     <orderEntry type="library" name="Gradle: org.codehaus.woodstox:stax2-api:4.2" level="project" />
     <orderEntry type="library" name="Gradle: stax:stax-api:1.0.1" level="project" />

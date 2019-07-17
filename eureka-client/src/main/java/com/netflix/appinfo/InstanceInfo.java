@@ -317,8 +317,7 @@ public class InstanceInfo {
     public enum InstanceStatus {
         UP, // Ready to receive traffic
         DOWN, // Do not send traffic- healthcheck callback failed
-        STARTING, // Just about starting- initializations to be done - do not
-        // send traffic
+        STARTING, //  Just about starting- initializations to be done - do not  send traffic
         OUT_OF_SERVICE, // Intentionally shutdown for traffic
         UNKNOWN;
 
@@ -424,12 +423,12 @@ public class InstanceInfo {
             result.appName = intern.apply(appName.toUpperCase(Locale.ROOT));
             return this;
         }
-        
+
         public Builder setAppNameForDeser(String appName) {
             result.appName = appName;
             return this;
         }
-        
+
 
         public Builder setAppGroupName(String appGroupName) {
             if (appGroupName != null) {

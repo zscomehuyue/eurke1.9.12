@@ -12,6 +12,7 @@ import com.netflix.appinfo.HealthCheckHandler;
 import com.netflix.appinfo.InstanceInfo;
 import com.netflix.discovery.shared.Applications;
 import com.netflix.discovery.shared.LookupService;
+//import com.sun.istack.internal.Nullable;
 
 /**
  * Define a simple interface over the current DiscoveryClient implementation.
@@ -166,26 +167,26 @@ public interface EurekaClient extends LookupService {
     /**
      * Register {@link EurekaEventListener} with the eureka client.
      *
-     * Once registered, the eureka client will invoke {@link EurekaEventListener#onEvent} 
-     * whenever there is a change in eureka client's internal state.  Use this instead of 
-     * polling the client for changes.  
-     * 
-     * {@link EurekaEventListener#onEvent} is called from the context of an internal thread 
+     * Once registered, the eureka client will invoke {@link EurekaEventListener#onEvent}
+     * whenever there is a change in eureka client's internal state.  Use this instead of
+     * polling the client for changes.
+     *
+     * {@link EurekaEventListener#onEvent} is called from the context of an internal thread
      * and must therefore return as quickly as possible without blocking.
-     * 
+     *
      * @param eventListener
      */
     public void registerEventListener(EurekaEventListener eventListener);
-    
+
     /**
      * Unregister a {@link EurekaEventListener} previous registered with {@link EurekaClient#registerEventListener}
      * or injected into the constructor of {@link DiscoveryClient}
-     * 
+     *
      * @param eventListener
      * @return True if removed otherwise false if the listener was never registered.
      */
     public boolean unregisterEventListener(EurekaEventListener eventListener);
-    
+
     /**
      * @return the current registered healthcheck handler
      */
@@ -199,12 +200,12 @@ public interface EurekaClient extends LookupService {
      * Shuts down Eureka Client. Also sends a deregistration request to the eureka server.
      */
     public void shutdown();
-    
+
     /**
      * @return the configuration of this eureka client
      */
     public EurekaClientConfig getEurekaClientConfig();
-    
+
     /**
      * @return the application info manager of this eureka client
      */

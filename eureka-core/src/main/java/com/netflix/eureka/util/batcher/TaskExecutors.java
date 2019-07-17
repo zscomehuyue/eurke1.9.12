@@ -190,6 +190,8 @@ class TaskExecutors<ID, T> {
                     metrics.registerExpiryTimes(holders);
 
                     List<T> tasks = getTasksOf(holders);
+
+                    // FIXME 批量从队列获取任务，然后调用服务端的请求，服务端的controller类：PeerReplicationResource  URL：peerreplication/batch/
                     ProcessingResult result = processor.process(tasks);
                     switch (result) {
                         case Success:

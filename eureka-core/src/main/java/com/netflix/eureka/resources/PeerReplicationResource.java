@@ -74,6 +74,8 @@ public class PeerReplicationResource {
      * @param replicationList
      *            The List of replication events from peer eureka nodes
      * @return A batched response containing the information about the responses of individual events
+     *
+     * FIXME 处理节点相关事件
      */
     @Path("batch")
     @POST

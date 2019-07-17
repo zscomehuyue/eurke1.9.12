@@ -130,9 +130,18 @@ public class PeerEurekaNode {
      *            the instance information {@link InstanceInfo} of any instance
      *            that is send to this instance.
      * @throws Exception
+     *
+     * FIXME 默认采用的是批量任务处理器，就是将task放入任务队列中，然后通过线程获取任务队列里面的任务，
+     * FIXME         模仿ThreadExecutorPool的方式，生成线程，
+     * FIXME 从队列里面抓取任务处理，统一批量执行,Eureka Server 那边也是统一接收，这样提高了同步效率
+     * FIXME 批量处理的任务执行器是com.netflix.eureka.cluster.   ReplicationTaskProcessor
+     *
+     *
      */
     public void register(final InstanceInfo info) throws Exception {
         long expiryTime = System.currentTimeMillis() + getLeaseRenewalOf(info);
+
+        //FIXME  默认采用的是批处理
         batchingDispatcher.process(
                 taskId("register", info),
                 new InstanceReplicationTask(targetHost, Action.Register, info, null, true) {
