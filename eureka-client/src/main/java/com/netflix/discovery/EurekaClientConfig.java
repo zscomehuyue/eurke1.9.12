@@ -286,7 +286,7 @@ public interface EurekaClientConfig {
     /**
      * Indicates whether the client should explicitly unregister itself from the remote server
      * on client shutdown.
-     * 
+     *
      * @return true if this instance should unregister with eureka on client shutdown, false otherwise
      */
     default boolean shouldUnregisterOnShutdown() {
